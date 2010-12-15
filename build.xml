@@ -1,0 +1,46 @@
+<project default='all'>
+  <target name='build'>
+    <javac srcdir='.' destdir='.' source='1.6' target='1.6'
+      includeantruntime='no' deprecation='yes' debug='yes'>
+      <compilerarg value="-Xlint"/>
+    </javac>
+  </target>
+
+  <target name='unit' depends='build'>
+    <fileset dir='.' includes='*Test.java' excludes='Test.java' id='tests.path'/>
+    <pathconvert property='tests.classes' refid='tests.path' pathsep=' '>
+      <map from='${basedir}/' to=''/>
+      <globmapper from="*.java" to="*"/>
+    </pathconvert>
+    <java classname='TestRunner' fork='yes' failonerror='yes'>
+      <arg line="${tests.classes}" />
+    </java>
+  </target>
+
+  <target name='demo' depends='build'>
+    <java classname='Test' fork='yes' failonerror='yes'/>
+  </target>
+
+  <target name='all' depends='unit, demo, dot'/>
+
+  <uptodate property='dot.is.uptodate'>
+    <srcfiles dir='.docs' includes='**/*.dot'/>
+    <globmapper from='*.dot' to='*.svg'/>
+  </uptodate>
+  <target name='dot' unless='dot.is.uptodate'>
+    <!-- example dot file:
+    <echo message='generating schema.svg'/>
+    <exec executable='dot' failifexecutionfails='no' failonerror='yes'>
+      <arg line='-Tsvg .docs/schema.dot -o .docs/schema.svg'/>
+    </exec>
+    -->
+  </target>
+
+  <target name='clean'>
+    <delete>
+      <fileset dir='.' includes='*.class'/>
+    </delete>
+  </target>
+
+  <target name='g0' depends='build'/>
+</project>
