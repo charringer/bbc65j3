@@ -1,0 +1,25 @@
+ N
+W O
+ S
+
+
+Testszenarien:
+ - kleines Labyrinth ohne Ausgang -> alle müssen sterben
+ - keine Geister, Ausgänge -> finden den Ausgang
+
+class Ghost < Actor
+
+class Adventurer < Actor
+  has collectedTreasure
+  has stepCountDown
+
+class Actor
+  has speed
+  can start()
+
+class Labyrinth
+  can getCell(x,y)
+  can end()
+
+class Cell
+  has treasure
