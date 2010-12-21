@@ -17,12 +17,12 @@ public abstract class Player extends Thread {
 	public void run() {
 		while (true) {
 			try {
-				sleep(sleepTime);	
-				step();
+				sleep(sleepTime);
 			} catch (InterruptedException e) {
 				if (this.dead)
 					return;
-			}
+			}	
+			step();
 		}
 	}
 
