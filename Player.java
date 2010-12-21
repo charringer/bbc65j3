@@ -35,7 +35,7 @@ public abstract class Player extends Thread {
 
 	/* stops the current player
 	 * by interrupting the thread */
-	public synchronized void kill() {
+	public void kill() {
 		this.dead = true;
 		this.interrupt();
 	}

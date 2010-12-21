@@ -22,6 +22,9 @@ public class Test {
 		for (int i = 0; i < 10; i++) { 
 			new TreasureHunter(lab.getCell(0,0), 10, 100);
 		}
+		for (int i = 0; i < 5; i++) {
+			new Ghost(lab.getCell(0,2), 100, 100);
+		}
 		lab.start();
 		lab.waitForEnd();
 		
