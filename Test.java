@@ -2,7 +2,7 @@
 public class Test {
 
 	public static void main(String[] args) {
-		TestRunner.main();
+		//TestRunner.main();
 		
 		String[] map = new String[]{
 			"-o-o",
@@ -24,6 +24,13 @@ public class Test {
 		}
 		lab.start();
 		lab.waitForEnd();
+		
+		for (Player player : lab.getPlayers()) {
+			if (player instanceof TreasureHunter) {
+				TreasureHunter hunter = (TreasureHunter) player;
+				System.out.println(hunter.getGold());
+			}
+		}
 	}
 
 }

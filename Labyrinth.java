@@ -51,6 +51,10 @@ public class Labyrinth {
 		players.add(player);
 	}
 	
+	public List<Player> getPlayers() {
+		return players;
+	}
+	
 	public void start() {
 		finished = false;
 		for (Player player : players) {

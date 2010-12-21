@@ -104,4 +104,10 @@ public class Cell {
 		return (x+1 == labyrinth.getWidth() && !eastWall)
 			|| (y+1 == labyrinth.getHeight() && !northWall);
 	}
+
+	public synchronized int seizeGold() {
+		int gold = this.gold;
+		this.gold = 0;
+		return gold;
+	}
 }
