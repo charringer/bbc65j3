@@ -47,4 +47,21 @@ public class LabyrinthTest extends Assert {
 		assertEquals(50, lab.getCell(0,2).getGold());
 		assertEquals(10, lab.getCell(1,0).getGold());
 	}
+
+	@Tst
+	public void getCell_worksAndKnowsCoordinates() {
+		assertEquals(0, lab.getCell(0,0).getX());
+		assertEquals(1, lab.getCell(1,0).getX());
+		assertEquals(0, lab.getCell(0,1).getX());
+		assertEquals(1, lab.getCell(1,1).getX());
+		assertEquals(0, lab.getCell(0,2).getX());
+		assertEquals(1, lab.getCell(1,2).getX());
+
+		assertEquals(0, lab.getCell(0,0).getY());
+		assertEquals(0, lab.getCell(1,0).getY());
+		assertEquals(1, lab.getCell(0,1).getY());
+		assertEquals(1, lab.getCell(1,1).getY());
+		assertEquals(2, lab.getCell(0,2).getY());
+		assertEquals(2, lab.getCell(1,2).getY());
+	}
 }
