@@ -57,7 +57,26 @@ public class Cell {
 	}
 	
 	public synchronized void addPlayer(Player player) {
-		players.add(player);
+		if(player instanceof TreasureHunter) {
+			boolean hasGhost = false;
+			for (Player p:players) {
+				if (p instanceof Ghost) {
+					hasGhost = true;
+					break;
+				}
+			}
+			player.kill();
+		} else if (player instanceof Ghost) {
+			players.add(player);
+			for(Player p:players) {
+				if(p instanceof TreasureHunter) {
+					p.kill();
+					labyrinth.hunterGotKilled();
+				}
+			}
+		} else {
+			throw new IllegalArgumentException("Type of Player not supported!");
+		}
 	}
 	
 	public synchronized void removePlayer(Player player) {
