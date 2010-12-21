@@ -2,8 +2,11 @@
 public class Test {
 
 	public static void main(String[] args) {
-		//TestRunner.main();
-		
+		System.out.println("== Phase I: deterministic test cases");
+		TestRunner.main(LabyrinthTest.class);
+
+		System.out.println("");
+		System.out.println("== Phase II: big real-life labyrinth in action");
 		String[] map = new String[]{
 			"o-o-o",
 			"|    ",
@@ -29,10 +32,13 @@ public class Test {
 		lab.start();
 		System.out.println(lab.waitForEnd());
 		
+		int thCount = 1;
 		for (Player player : lab.getPlayers()) {
 			if (player instanceof TreasureHunter) {
 				TreasureHunter hunter = (TreasureHunter) player;
-				System.out.println(hunter.getGold());
+				System.out.println("Hunter "+thCount+" collected "+hunter.getGold()
+					+" Gold"+(hunter.isDead()?" and was killed":""));
+				thCount += 1;
 			}
 		}
 	}
