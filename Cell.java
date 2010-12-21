@@ -52,10 +52,6 @@ public class Cell {
 		return y;
 	}
 	
-	public synchronized List<Player> getPlayers() {
-		return new ArrayList<Player>(players);
-	}
-	
 	public synchronized void addPlayer(Player player) {
 		players.add(player);
 	}
@@ -64,10 +60,15 @@ public class Cell {
 		players.remove(player);
 	}
 
+	/* just return the associated Labyrinth
+	 */
 	public Labyrinth getLabyrinth() {
 		return labyrinth;
 	}
 	
+	/* return a list of reachable cells from this cell, respecting walls
+	 * only iff respectWalls is true
+	 */
 	public List<Cell> adjacentCells(boolean respectWalls) {
 		List<Cell> cells = new ArrayList<Cell>();
 		
@@ -100,11 +101,17 @@ public class Cell {
 		return cells;
 	}
 
+	/* an exit is exactly a wall at the north or eastern end, that
+	 * has at least one free wall; return whether this is an exit
+	 */
 	public boolean isExit() {
 		return (x+1 == labyrinth.getWidth() && !eastWall)
 			|| (y+1 == labyrinth.getHeight() && !northWall);
 	}
 
+	/* withdraws the amount of gold >= 0 of this cell and returns the
+	 * amount
+	 */ 
 	public synchronized int seizeGold() {
 		int gold = this.gold;
 		this.gold = 0;
