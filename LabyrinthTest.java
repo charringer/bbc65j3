@@ -94,7 +94,7 @@ public class LabyrinthTest extends Assert {
 
 	@Tst
 	public void huntersWinThroughExit() {
-		new TreasureHunter(lab.getCell(0,0), 2, 100);
+		new TreasureHunter(lab.getCell(0,0), 2, 200);
 		lab.start();
 		EndState end = lab.waitForEnd();
 		assertEquals(EndState.HUNTERS_WIN, end);
