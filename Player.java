@@ -11,9 +11,11 @@ public abstract class Player extends Thread {
 		return currentCell;
 	} 
 
-	/*public void run() {
+	public void run() {
 		try {
 			sleep(sleepTime);	
 		}
-	}*/
+		catch(InterruptedException e) {
+		}
+	}
 }
