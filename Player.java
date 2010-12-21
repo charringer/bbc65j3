@@ -1,21 +1,30 @@
 public abstract class Player extends Thread {
 	private Cell currentCell;
 	private long sleepTime;
+	private boolean dead;
 
 	public Player(Cell startCell, long sleepTime) {
 		currentCell = startCell;
 		this.sleepTime = sleepTime;
+		this.dead = false;
 	}
-
-	public Cell getCell() {
-		return currentCell;
-	} 
 
 	public void run() {
-		try {
-			sleep(sleepTime);	
-		}
-		catch(InterruptedException e) {
+		while (true) {
+			try {
+				sleep(sleepTime);	
+				step();
+			} catch (InterruptedException e) {
+				if (this.dead)
+					return;
+			}
 		}
 	}
+
+	public void kill() {
+		this.dead = true;
+		this.interrupt();
+	}
+
+	protected abstract void step();
 }
