@@ -52,6 +52,14 @@ public class Cell {
 		return y;
 	}
 	
+	/*  if "player" is a TreasureHunter and no
+	 *  ghost is on the cell, the player will be added 
+	 *  to the cell
+	 *  if a ghost is on the cell, the player will be
+	 *  killed and not added
+	 *  if "player" is a Ghost the player will be 
+	 *  added to the cell and all TreasureHunters on the
+	 *  cell will be killed */
 	public synchronized void addPlayer(Player player) {
 		if(player instanceof TreasureHunter) {
 			if(hasGhosts()) {
