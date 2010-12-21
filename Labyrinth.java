@@ -13,16 +13,16 @@ public class Labyrinth {
 	/* format of map: see test cases; minimum dim: 1x1
 	 */
 	public Labyrinth(String[] map, int[][] treasure) {
-		height = map.length / 2;
-		width = map[1].length() / 2;
+		height = (map.length - 1) / 2;
+		width = (map[1].length() - 1) / 2;
 
 		cell = new Cell[height][];
 		for (int y = 0; y < height; y++) {
 			Cell[] cellLine = new Cell[width];
 			cell[y] = cellLine;
 			for (int x = 0; x < width; x++) {
-				boolean north = (map[2*height - 2*(y+1)].charAt(2*x) == '-');
-				boolean east = (map[2*height - 2*(y+1) + 1].charAt(2*x + 1) == '|');
+				boolean north = (map[2*height - 2*(y+1)].charAt(2*x + 1) == '-');
+				boolean east = (map[2*height - 2*(y+1) + 1].charAt(2*x + 2) == '|');
 				int gold = treasure[height - (y+1)][x];
 				Cell curCell = new Cell(this, north, east, gold, x, y);
 				cellLine[x] = curCell;

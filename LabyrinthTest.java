@@ -8,12 +8,13 @@ public class LabyrinthTest extends Assert {
 	@Before
 	public void setUp() {
 		String[] map = new String[]{
-			"-o-o",
-			"    ",
-			" o-o",
-			"   |",
-			"-o o",
-			"   |"
+			"o-o-o",
+			"|    ",
+			"o o-o",
+			"|   |",
+			"o-o o",
+			"|   |",
+			"o-o-o"
 		};
 		int[][] treasure = new int[][] {
 			new int[]{50, 5},
@@ -23,13 +24,14 @@ public class LabyrinthTest extends Assert {
 		lab = new Labyrinth(map, treasure);
 
 		String[] exitlessMap = new String[]{
-			"-o-o",
-			"   |",
-			"-o-o",
-			"   |",
-			" o o",
-			" | |"
-		};
+			"o-o-o",
+			"|   |",
+			"o-o-o",
+			"|   |",
+			"o o o",
+			"| | |",
+			"o-o-o"
+		};       
 		exitlessLab = new Labyrinth(exitlessMap, treasure);
 	}
 
