@@ -1,3 +1,6 @@
+import java.util.List;
+import java.util.Random;
+
 public class TreasureHunter extends Player {
 
 	private Random rand;
@@ -11,7 +14,7 @@ public class TreasureHunter extends Player {
 		if (currentCell.isExit()) {
 			currentCell.getLabyrinth().huntersWin();
 		} else {
-			List<Cell> adjacentCells = currentCell.adjacentCells();
+			List<Cell> adjacentCells = currentCell.adjacentCells(true);
 			int decisionIndex = rand.nextInt(adjacentCells.size());
 			Cell nextCell = adjacentCells.get(decisionIndex);
 			currentCell.removePlayer(this);
