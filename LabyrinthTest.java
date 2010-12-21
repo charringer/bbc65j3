@@ -12,7 +12,12 @@ public class LabyrinthTest extends Assert {
 			"-o o",
 			"   |"
 		};
-		lab = new Labyrinth(map);
+		int[][] treasure = new int[][] {
+			new int[]{50, 5},
+			new int[]{ 0, 0},
+			new int[]{ 0,10}
+		};
+		lab = new Labyrinth(map, treasure);
 	}
 
 	@Tst
@@ -33,5 +38,13 @@ public class LabyrinthTest extends Assert {
 		assertEquals(true, lab.getCell(1,1).hasEastWall());
 		assertEquals(true,  lab.getCell(0,2).hasNorthWall());
 		assertEquals(false, lab.getCell(0,2).hasEastWall());
+	}
+
+	@Tst
+	public void getCell_worksAndKnowsTreasure() {
+		assertEquals(0, lab.getCell(0,0).getGold());
+		assertEquals(0, lab.getCell(1,1).getGold());
+		assertEquals(50, lab.getCell(0,2).getGold());
+		assertEquals(10, lab.getCell(1,0).getGold());
 	}
 }

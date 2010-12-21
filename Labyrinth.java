@@ -6,7 +6,7 @@ public class Labyrinth {
 
 	/* format of map: see test cases; minimum dim: 1x1
 	 */
-	public Labyrinth(String[] map) {
+	public Labyrinth(String[] map, int[][] treasure) {
 		height = map.length / 2;
 		width = map[1].length() / 2;
 
@@ -17,7 +17,8 @@ public class Labyrinth {
 			for (int x = 0; x < width; x++) {
 				boolean north = (map[2*height - 2*(y+1)].charAt(2*x) == '-');
 				boolean east = (map[2*height - 2*(y+1) + 1].charAt(2*x + 1) == '|');
-				Cell curCell = new Cell(north, east);
+				int gold = treasure[height - (y+1)][x];
+				Cell curCell = new Cell(north, east, gold);
 				cellLine[x] = curCell;
 			}
 		}
