@@ -3,6 +3,7 @@ import java.util.List;
 
 public class Cell {
 
+	private Labyrinth labyrinth;
 	private boolean northWall;
 	private boolean eastWall;
 	private int x;
@@ -10,7 +11,8 @@ public class Cell {
 	private int gold;
 	private List<Player> players = new ArrayList<Player>();
 
-	public Cell(boolean northWall, boolean eastWall, int gold, int x, int y) {
+	public Cell(Labyrinth labyrinth, boolean northWall, boolean eastWall, int gold, int x, int y) {
+		this.labyrinth = labyrinth;
 		this.northWall = northWall;
 		this.eastWall = eastWall;
 		this.gold = gold;
@@ -60,5 +62,41 @@ public class Cell {
 	
 	public synchronized void removePlayer(Player player) {
 		players.remove(player);
+	}
+
+	public Labyrinth getLabyrinth() {
+		return labyrinth;
+	}
+	
+	public List<Cell> adjacentCells(boolean respectWalls) {
+		List<Cell> cells = new ArrayList<Cell>();
+		
+		if (!respectWalls || !northWall) {
+			if (y + 1 < labyrinth.getHeight()) {
+				cells.add(labyrinth.getCell(x, y+1));
+			}
+		}
+		
+		if (!respectWalls || !eastWall) {
+			if (x + 1 < labyrinth.getWidth()) {
+				cells.add(labyrinth.getCell(x+1, y));
+			}
+		}
+		
+		if (y - 1 >= 0) {
+			Cell newCell = labyrinth.getCell(x, y-1);
+			if (!respectWalls || newCell.hasNorthWall()) {
+				cells.add(newCell);
+			}
+		}
+		
+		if (x - 1 >= 0) {
+			Cell newCell = labyrinth.getCell(x-1, y);
+			if (!respectWalls || newCell.hasEastWall()) {
+				cells.add(newCell);
+			}
+		}
+		
+		return cells;
 	}
 }
