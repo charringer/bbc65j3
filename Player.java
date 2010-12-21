@@ -35,11 +35,16 @@ public abstract class Player extends Thread {
 
 	/* stops the current player
 	 * by interrupting the thread */
-	public void kill() {
+	public void stopPlayer() {
 		this.running = true;
 		this.interrupt();
 	}
 
 	/* should move the player */
 	protected abstract void step();
+	
+	@Override
+	public String toString() {
+		return getClass()	.toString();
+	}
 }

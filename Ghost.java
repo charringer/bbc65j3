@@ -14,9 +14,7 @@ public class Ghost extends Player {
 		List<Cell> ac = this.currentCell.adjacentCells(false);
 		Cell nextCell = ac.get(rand.nextInt(ac.size()));
 		currentCell.removePlayer(this);
-		nextCell.addPlayer(this);
 		currentCell = nextCell;
 		currentCell.addPlayer(this);
-
 	}
 }

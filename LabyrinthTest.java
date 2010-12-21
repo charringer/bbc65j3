@@ -118,9 +118,9 @@ public class LabyrinthTest extends Assert {
 
 	@Tst
 	public void allHuntersDie() {
-		TreasureHunter th1 = new TreasureHunter(exitlessLab.getCell(0,0), 2, 50);
-		TreasureHunter th2 = new TreasureHunter(exitlessLab.getCell(1,2), 3, 50);
-		new Ghost(exitlessLab.getCell(0,2), 1, 50);
+		TreasureHunter th1 = new TreasureHunter(exitlessLab.getCell(0,0), 50, 50);
+		TreasureHunter th2 = new TreasureHunter(exitlessLab.getCell(1,2), 50, 50);
+		new Ghost(exitlessLab.getCell(0,2), 1, 2000);
 		exitlessLab.start();
 		assertEquals(EndState.GHOSTS_WIN, exitlessLab.waitForEnd());
 

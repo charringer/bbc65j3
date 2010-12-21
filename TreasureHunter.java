@@ -39,4 +39,9 @@ public class TreasureHunter extends Player {
 	public boolean isDead() {
 		return !alive;
 	}
+	
+	public void kill() {
+		alive = false;
+		stopPlayer();
+	}
 }
