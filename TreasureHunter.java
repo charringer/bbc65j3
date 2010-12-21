@@ -5,10 +5,12 @@ public class TreasureHunter extends Player {
 
 	private Random rand;
 	private int gold;
+	private boolean alive;
 
 	public TreasureHunter(Cell currentCell, long sleep, int maxSteps) {
 		super(currentCell, sleep, maxSteps);
 		rand = new Random();
+		this.alive = true;
 	}
 
 	protected synchronized void step() {
@@ -32,5 +34,9 @@ public class TreasureHunter extends Player {
 
 	public int getGold() {
 		return gold;
+	}
+
+	public boolean isDead() {
+		return !alive;
 	}
 }

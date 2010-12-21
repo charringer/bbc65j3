@@ -119,4 +119,17 @@ public class LabyrinthTest extends Assert {
 		EndState end = exitlessLab.waitForEnd();
 		assertEquals(EndState.STEP_COUNT_REACHED, end);
 	}
+
+	@Tst
+	public void allHuntersDie() {
+		TreasureHunter th1 = new TreasureHunter(exitlessLab.getCell(0,0), 2, 50);
+		TreasureHunter th2 = new TreasureHunter(exitlessLab.getCell(1,2), 3, 50);
+		new Ghost(exitlessLab.getCell(0,2), 1, 50);
+		exitlessLab.start();
+		EndState end = exitlessLab.waitForEnd();
+		assertEquals(EndState.GHOSTS_WIN, end);
+
+		assertTrue(th1.isDead());
+		assertTrue(th2.isDead());
+	}
 }

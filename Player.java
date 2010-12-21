@@ -1,7 +1,7 @@
 public abstract class Player extends Thread {
 	protected Cell currentCell;
 	private long sleepTime;
-	private boolean dead;
+	private boolean running;
 	private int stepCountdown;
 
 	/* saves startCell and sleepTime 
@@ -11,7 +11,7 @@ public abstract class Player extends Thread {
 	public Player(Cell startCell, long sleepTime, int maxSteps) {
 		currentCell = startCell;
 		this.sleepTime = sleepTime;
-		this.dead = false;
+		this.running = false;
 		startCell.getLabyrinth().addPlayer(this);
 		startCell.addPlayer(this);
 		this.stepCountdown = maxSteps;
@@ -23,7 +23,7 @@ public abstract class Player extends Thread {
 			try {
 				sleep(sleepTime);
 			} catch (InterruptedException e) {
-				if (this.dead)
+				if (this.running)
 					return;
 			}	
 			step();
@@ -36,7 +36,7 @@ public abstract class Player extends Thread {
 	/* stops the current player
 	 * by interrupting the thread */
 	public void kill() {
-		this.dead = true;
+		this.running = true;
 		this.interrupt();
 	}
 
