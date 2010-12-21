@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Cell {
 
 	private boolean northWall;
@@ -5,6 +8,7 @@ public class Cell {
 	private int x;
 	private int y;
 	private int gold;
+	private List<Player> players = new ArrayList<Player>();
 
 	public Cell(boolean northWall, boolean eastWall, int gold, int x, int y) {
 		this.northWall = northWall;
@@ -44,5 +48,17 @@ public class Cell {
 	 */
 	public int getY() {
 		return y;
+	}
+	
+	public List<Player> getPlayers() {
+		return new ArrayList<Player>(players);
+	}
+	
+	public synchronized void addPlayer(Player player) {
+		players.add(player);
+	}
+	
+	public synchronized void removePlayer(Player player) {
+		players.remove(player);
 	}
 }
