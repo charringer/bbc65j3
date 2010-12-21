@@ -101,6 +101,18 @@ public class LabyrinthTest extends Assert {
 	}
 
 	@Tst
+	public void huntersCollectAllTreasure() {
+		TreasureHunter th1 = new TreasureHunter(lab.getCell(0,0), 2, 100);
+		TreasureHunter th2 = new TreasureHunter(lab.getCell(0,1), 5, 100);
+		lab.start();
+		EndState end = lab.waitForEnd();
+		assertEquals(EndState.HUNTERS_WIN, end);
+
+		int treasureSum = th1.getGold() + th2.getGold();
+		assertEquals(65, treasureSum);
+	}
+
+	@Tst
 	public void huntersReachesMaxSteps() {
 		new TreasureHunter(exitlessLab.getCell(0,0), 2, 20);
 		exitlessLab.start();
