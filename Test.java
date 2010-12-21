@@ -26,7 +26,7 @@ public class Test {
 			new Ghost(lab.getCell(0,2), 100, 100);
 		}
 		lab.start();
-		lab.waitForEnd();
+		System.out.println(lab.waitForEnd());
 		
 		for (Player player : lab.getPlayers()) {
 			if (player instanceof TreasureHunter) {
