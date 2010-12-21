@@ -2,6 +2,18 @@
 W O
  S
 
+|NxNxNx
+|.O.O.O
+|NxNxNx
+|.O.O.O
+-------
+
+-o-o-o
+ | | |
+-o-o-o
+ | | |
+-o-o-o
+ | | |
 
 Testszenarien:
  - kleines Labyrinth ohne Ausgang -> alle müssen sterben
