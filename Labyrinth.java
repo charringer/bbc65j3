@@ -75,6 +75,24 @@ public class Labyrinth {
 		endState = EndState.HUNTERS_WIN;
 		stop();
 	}
+	
+	public synchronized boolean hasAliveHunter() {
+		for (Player player : players) {
+			if (player instanceof TreasureHunter) {
+				if (!((TreasureHunter) player).isDead()) {
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	
+	public synchronized void hunterGotKilled() {
+		if (!hasAliveHunter()) {
+			endState = EndState.GHOSTS_WIN;
+			stop();
+		}
+	}
 
 	public void playerReachesStepCount() {
 		endState = EndState.STEP_COUNT_REACHED;
