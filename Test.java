@@ -20,7 +20,7 @@ public class Test {
 		
 		Labyrinth lab = new Labyrinth(map, treasure);
 		for (int i = 0; i < 10; i++) { 
-			lab.addPlayer(new TreasureHunter(lab.getCell(0,0), 10, 100));
+			new TreasureHunter(lab.getCell(0,0), 10, 100);
 		}
 		lab.start();
 		lab.waitForEnd();

@@ -62,7 +62,7 @@ public class Labyrinth {
 		}
 	}
 	
-	public void stop() {
+	private void stop() {
 		for (Player player : players) {
 			player.kill();
 		}
