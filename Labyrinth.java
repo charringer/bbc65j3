@@ -70,7 +70,7 @@ public class Labyrinth {
 	/* stops all players in the player list and notifies the finishNotifier */
 	private void stop() {
 		for (Player player : players) {
-			player.kill();
+			player.stopPlayer();
 		}
 		synchronized (finishNotifier) {
 			finishNotifier.notifyAll();
