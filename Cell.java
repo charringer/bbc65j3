@@ -61,15 +61,21 @@ public class Cell {
 					break;
 				}
 			}
-			player.kill();
+			if(hasGhost) {
+				player.kill();
+				labyrinth.hunterGotKilled();
+			}
+			else
+				players.add(player);
+
 		} else if (player instanceof Ghost) {
-			players.add(player);
 			for(Player p:players) {
 				if(p instanceof TreasureHunter) {
 					p.kill();
 					labyrinth.hunterGotKilled();
 				}
 			}
+			players.add(player);
 		} else {
 			throw new IllegalArgumentException("Type of Player not supported!");
 		}
