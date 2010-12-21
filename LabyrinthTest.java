@@ -3,6 +3,7 @@ import java.util.Arrays;
 public class LabyrinthTest extends Assert {
 
 	private Labyrinth lab;
+	private Labyrinth exitlessLab;
 
 	@Before
 	public void setUp() {
@@ -20,6 +21,16 @@ public class LabyrinthTest extends Assert {
 			new int[]{ 0,10}
 		};
 		lab = new Labyrinth(map, treasure);
+
+		String[] exitlessMap = new String[]{
+			"-o-o",
+			"   |",
+			"-o-o",
+			"   |",
+			" o o",
+			" | |"
+		};
+		exitlessLab = new Labyrinth(exitlessMap, treasure);
 	}
 
 	@Tst
@@ -83,9 +94,17 @@ public class LabyrinthTest extends Assert {
 
 	@Tst
 	public void huntersWinThroughExit() {
-		TreasureHunter th = new TreasureHunter(lab.getCell(0,0), 2, 100);
+		new TreasureHunter(lab.getCell(0,0), 2, 100);
 		lab.start();
 		EndState end = lab.waitForEnd();
 		assertEquals(EndState.HUNTERS_WIN, end);
+	}
+
+	@Tst
+	public void huntersReachesMaxSteps() {
+		new TreasureHunter(exitlessLab.getCell(0,0), 2, 20);
+		exitlessLab.start();
+		EndState end = exitlessLab.waitForEnd();
+		assertEquals(EndState.STEP_COUNT_REACHED, end);
 	}
 }
