@@ -24,7 +24,7 @@ public class Test {
 		
 		Labyrinth lab = new Labyrinth(map, treasure);
 		for (int i = 0; i < 10; i++) { 
-			new TreasureHunter(lab.getCell(0,0), 10, 100);
+			new TreasureHunter("Hunter "+i, lab.getCell(0,0), 10, 100);
 		}
 		for (int i = 0; i < 5; i++) {
 			new Ghost(lab.getCell(0,2), 100, 100);
@@ -32,13 +32,11 @@ public class Test {
 		lab.start();
 		System.out.println(lab.waitForEnd());
 		
-		int thCount = 1;
 		for (Player player : lab.getPlayers()) {
 			if (player instanceof TreasureHunter) {
 				TreasureHunter hunter = (TreasureHunter) player;
-				System.out.println("Hunter "+thCount+" collected "+hunter.getGold()
-					+" Gold"+(hunter.isDead()?" and was killed":""));
-				thCount += 1;
+				System.out.println(hunter.getMaidenName()+" collected "+hunter.getGold()
+					+" Gold"+(hunter.isDead()?" and died":""));
 			}
 		}
 	}

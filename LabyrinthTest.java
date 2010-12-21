@@ -96,15 +96,15 @@ public class LabyrinthTest extends Assert {
 
 	@Tst
 	public void huntersWinThroughExit() {
-		new TreasureHunter(lab.getCell(0,0), 2, 200);
+		new TreasureHunter("lucky hunter", lab.getCell(0,0), 2, 200);
 		lab.start();
 		assertEquals(EndState.HUNTERS_WIN, lab.waitForEnd());
 	}
 
 	@Tst
 	public void huntersCollectAllTreasure() {
-		TreasureHunter th1 = new TreasureHunter(lab.getCell(0,0), 2, 100);
-		TreasureHunter th2 = new TreasureHunter(lab.getCell(0,1), 5, 100);
+		TreasureHunter th1 = new TreasureHunter("hunter 1", lab.getCell(0,0), 2, 100);
+		TreasureHunter th2 = new TreasureHunter("hunter 2", lab.getCell(0,1), 5, 100);
 		lab.start();
 		assertEquals(EndState.HUNTERS_WIN, lab.waitForEnd());
 
@@ -113,15 +113,15 @@ public class LabyrinthTest extends Assert {
 
 	@Tst
 	public void huntersReachesMaxSteps() {
-		new TreasureHunter(exitlessLab.getCell(0,0), 2, 20);
+		new TreasureHunter("desperate hunter", exitlessLab.getCell(0,0), 2, 20);
 		exitlessLab.start();
 		assertEquals(EndState.STEP_COUNT_REACHED, exitlessLab.waitForEnd());
 	}
 
 	@Tst
 	public void allHuntersDie() {
-		TreasureHunter th1 = new TreasureHunter(exitlessLab.getCell(0,0), 50, 50);
-		TreasureHunter th2 = new TreasureHunter(exitlessLab.getCell(1,2), 50, 50);
+		TreasureHunter th1 = new TreasureHunter("Bonny", exitlessLab.getCell(0,0), 50, 50);
+		TreasureHunter th2 = new TreasureHunter("Clyde", exitlessLab.getCell(1,2), 50, 50);
 		new Ghost(exitlessLab.getCell(0,2), 1, 2000);
 		exitlessLab.start();
 		assertEquals(EndState.GHOSTS_WIN, exitlessLab.waitForEnd());

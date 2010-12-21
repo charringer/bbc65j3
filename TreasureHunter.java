@@ -6,11 +6,20 @@ public class TreasureHunter extends Player {
 	private Random rand;
 	private int gold;
 	private boolean alive;
+	private String name;
 
-	public TreasureHunter(Cell currentCell, long sleep, int maxSteps) {
+	public TreasureHunter(String name, Cell currentCell, long sleep, int maxSteps) {
 		super(currentCell, sleep, maxSteps);
 		rand = new Random();
 		this.alive = true;
+		this.name = name;
+	}
+
+	/* return the name of the hunter
+	 * NOTE: getName is reserved by java.lang.Thread
+	 */
+	public String getMaidenName() {
+		return name;
 	}
 
 	protected synchronized void step() {
