@@ -30,10 +30,12 @@ public class Labyrinth {
 		}
 	}
 
+	/* returns height >= 0 */
 	public int getHeight() {
 		return height;
 	}
 
+	/* returns width >= 0 */
 	public int getWidth() {
 		return width;
 	}
@@ -47,14 +49,17 @@ public class Labyrinth {
 		return cell[y][x];
 	}
 	
+	/* adds a player to the player list */
 	public void addPlayer(Player player) {
 		players.add(player);
 	}
 	
+	/* returns the player list */
 	public List<Player> getPlayers() {
 		return players;
 	}
 	
+	/* starts all players in the player list */
 	public void start() {
 		endState = null;
 		for (Player player : players) {
@@ -62,6 +67,7 @@ public class Labyrinth {
 		}
 	}
 	
+	/* stops all players in the player list and notifies the finishNotifier */
 	private void stop() {
 		for (Player player : players) {
 			player.kill();
@@ -71,11 +77,13 @@ public class Labyrinth {
 		}
 	}
 	
+	/* ends the game if a hunter reached an exit */ 
 	public void huntersWin() {
 		endState = EndState.HUNTERS_WIN;
 		stop();
 	}
 	
+	/* returns true iff there is a hunter in the player list that is alive */
 	public synchronized boolean hasAliveHunter() {
 		for (Player player : players) {
 			if (player instanceof TreasureHunter) {
@@ -87,6 +95,7 @@ public class Labyrinth {
 		return false;
 	}
 	
+	/* ends the game if all hunters are dead */
 	public synchronized void hunterGotKilled() {
 		if (!hasAliveHunter()) {
 			endState = EndState.GHOSTS_WIN;
@@ -94,11 +103,13 @@ public class Labyrinth {
 		}
 	}
 
+	/* ends the game if a player reached the maximum step count */
 	public void playerReachesStepCount() {
 		endState = EndState.STEP_COUNT_REACHED;
 		stop();
 	}
 	
+	/* returns as soon as the game has ended */
 	public EndState waitForEnd() {
 		while (endState == null) {
 			try {
