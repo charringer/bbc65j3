@@ -8,13 +8,27 @@ public class Test {
 		System.out.println("");
 		System.out.println("== Phase II: big real-life labyrinth in action");
 		String[] map = new String[]{
-			"o-o-o",
-			"|    ",
-			"o o-o",
-			"|   |",
-			"o-o o",
-			"|   |",
-			"o-o-o"
+"o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o",
+"|             |                         |",
+"o o-o-o-o-o-o o-o-o o o-o-o o-o-o-o o-o o",
+"| |               | | |   | |   | | |   |",
+"o o o-o o-o-o-o o-o o-o o o o-o o o o-o o",
+"| | | |   |   | |       | |   | |     | |",
+"o o o o o-o o o o o-o-o o o-o-o o o-o o o",
+"| |   | |   | | | |     |       |     | |",
+"o o o-o o o-o o-o o-o-o o o o-o o o-o-o o",
+"| |     | |           | | | | | | |     |",
+"o o-o-o-o o-o o o-o-o-o o-o o o o o o-o o",
+"|         |   | |         | |   | | |   |",
+"o o-o o-o-o o-o o o-o-o-o o-o-o o o o-o o",
+"| | | | |   |   |       |     | | |   | |",
+"o o o-o o o o-o o o-o-o o-o-o o o o-o o o",
+"| |     |       | | |       | | |   | | |",
+"o o-o-o o o o-o-o o o-o-o-o o o o-o-o o o",
+"|     | | | |     |     |   | |         |",
+"o o-o-o o o-o o-o-o o-o o-o-o o-o-o-o-o o",
+"| |                 |                   |",
+"o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o-o",
 		};
 		int[][] treasure = new int[][] {
 			new int[]{50, 5},
