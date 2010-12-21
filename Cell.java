@@ -85,14 +85,14 @@ public class Cell {
 		
 		if (y - 1 >= 0) {
 			Cell newCell = labyrinth.getCell(x, y-1);
-			if (!respectWalls || newCell.hasNorthWall()) {
+			if (!respectWalls || !newCell.hasNorthWall()) {
 				cells.add(newCell);
 			}
 		}
 		
 		if (x - 1 >= 0) {
 			Cell newCell = labyrinth.getCell(x-1, y);
-			if (!respectWalls || newCell.hasEastWall()) {
+			if (!respectWalls || !newCell.hasEastWall()) {
 				cells.add(newCell);
 			}
 		}
@@ -103,5 +103,11 @@ public class Cell {
 	public boolean isExit() {
 		return (x+1 == labyrinth.getWidth() && !eastWall)
 			|| (y+1 == labyrinth.getHeight() && !northWall);
+	}
+
+	public synchronized int seizeGold() {
+		int gold = this.gold;
+		this.gold = 0;
+		return gold;
 	}
 }

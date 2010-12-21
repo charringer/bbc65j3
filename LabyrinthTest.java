@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class LabyrinthTest extends Assert {
 
 	private Labyrinth lab;
@@ -63,5 +65,19 @@ public class LabyrinthTest extends Assert {
 		assertEquals(1, lab.getCell(1,1).getY());
 		assertEquals(2, lab.getCell(0,2).getY());
 		assertEquals(2, lab.getCell(1,2).getY());
+	}
+	
+	@Tst
+	public void adjacentCells_works() {
+		assertEquals(2, lab.getCell(0,0).adjacentCells(false).size());
+		assertEquals(3, lab.getCell(1,1).adjacentCells(false).size());
+
+		assertEquals(1, lab.getCell(0,0).adjacentCells(true).size());
+		assertEquals(2, lab.getCell(1,1).adjacentCells(true).size());
+
+		assertEquals(Arrays.asList(lab.getCell(1,0)),
+				lab.getCell(0,0).adjacentCells(true));
+		assertEquals(Arrays.asList(lab.getCell(1,0), lab.getCell(0,1)),
+				lab.getCell(1,1).adjacentCells(true));
 	}
 }

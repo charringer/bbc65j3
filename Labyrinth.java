@@ -7,6 +7,8 @@ public class Labyrinth {
 	private int width;
 	private Cell[][] cell;
 	private List<Player> players = new ArrayList<Player>();
+	private boolean finished = false;
+	private Object finishNotifier = new Object();
 
 	/* format of map: see test cases; minimum dim: 1x1
 	 */
@@ -49,19 +51,38 @@ public class Labyrinth {
 		players.add(player);
 	}
 	
+	public List<Player> getPlayers() {
+		return players;
+	}
+	
 	public void start() {
+		finished = false;
 		for (Player player : players) {
 			player.start();
 		}
 	}
 	
 	public void stop() {
+		finished = true;
 		for (Player player : players) {
 			player.kill();
+		}
+		synchronized (finishNotifier) {
+			finishNotifier.notifyAll();
 		}
 	}
 	
 	public void huntersWin() {
 		stop();
+	}
+	
+	public void waitForEnd() {
+		while (!finished) {
+			try {
+				synchronized (finishNotifier) {
+					finishNotifier.wait(1000);
+				}
+			} catch (InterruptedException ex) {}
+		}
 	}
 }
