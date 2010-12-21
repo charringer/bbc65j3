@@ -1,0 +1,5 @@
+public enum EndState {
+	STEP_COUNT_REACHED, 
+	HUNTERS_WIN,
+	GHOSTS_WIN
+}

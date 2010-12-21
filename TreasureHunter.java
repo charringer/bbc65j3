@@ -6,8 +6,8 @@ public class TreasureHunter extends Player {
 	private Random rand;
 	private int gold;
 
-	public TreasureHunter(Cell currentCell, long sleep) {
-		super(currentCell, sleep);
+	public TreasureHunter(Cell currentCell, long sleep, int maxSteps) {
+		super(currentCell, sleep, maxSteps);
 		rand = new Random();
 	}
 

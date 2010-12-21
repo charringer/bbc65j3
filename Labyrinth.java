@@ -7,7 +7,7 @@ public class Labyrinth {
 	private int width;
 	private Cell[][] cell;
 	private List<Player> players = new ArrayList<Player>();
-	private boolean finished = false;
+	private EndState endState = null;
 	private Object finishNotifier = new Object();
 
 	/* format of map: see test cases; minimum dim: 1x1
@@ -56,14 +56,13 @@ public class Labyrinth {
 	}
 	
 	public void start() {
-		finished = false;
+		endState = null;
 		for (Player player : players) {
 			player.start();
 		}
 	}
 	
 	public void stop() {
-		finished = true;
 		for (Player player : players) {
 			player.kill();
 		}
@@ -73,16 +72,18 @@ public class Labyrinth {
 	}
 	
 	public void huntersWin() {
+		endState = EndState.HUNTERS_WIN;
 		stop();
 	}
 	
-	public void waitForEnd() {
-		while (!finished) {
+	public EndState waitForEnd() {
+		while (endState == null) {
 			try {
 				synchronized (finishNotifier) {
 					finishNotifier.wait(1000);
 				}
 			} catch (InterruptedException ex) {}
 		}
+		return endState;
 	}
 }
