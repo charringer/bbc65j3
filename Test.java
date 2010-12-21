@@ -5,12 +5,13 @@ public class Test {
 		//TestRunner.main();
 		
 		String[] map = new String[]{
-			"-o-o",
-			"    ",
-			" o-o",
-			"   |",
-			"-o o",
-			"   |"
+			"o-o-o",
+			"|    ",
+			"o o-o",
+			"|   |",
+			"o-o o",
+			"|   |",
+			"o-o-o"
 		};
 		int[][] treasure = new int[][] {
 			new int[]{50, 5},
