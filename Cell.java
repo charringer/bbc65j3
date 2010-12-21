@@ -85,14 +85,14 @@ public class Cell {
 		
 		if (y - 1 >= 0) {
 			Cell newCell = labyrinth.getCell(x, y-1);
-			if (!respectWalls || newCell.hasNorthWall()) {
+			if (!respectWalls || !newCell.hasNorthWall()) {
 				cells.add(newCell);
 			}
 		}
 		
 		if (x - 1 >= 0) {
 			Cell newCell = labyrinth.getCell(x-1, y);
-			if (!respectWalls || newCell.hasEastWall()) {
+			if (!respectWalls || !newCell.hasEastWall()) {
 				cells.add(newCell);
 			}
 		}
