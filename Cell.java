@@ -52,7 +52,7 @@ public class Cell {
 		return y;
 	}
 	
-	public List<Player> getPlayers() {
+	public synchronized List<Player> getPlayers() {
 		return new ArrayList<Player>(players);
 	}
 	
