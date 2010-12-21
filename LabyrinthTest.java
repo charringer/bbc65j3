@@ -96,8 +96,7 @@ public class LabyrinthTest extends Assert {
 	public void huntersWinThroughExit() {
 		new TreasureHunter(lab.getCell(0,0), 2, 200);
 		lab.start();
-		EndState end = lab.waitForEnd();
-		assertEquals(EndState.HUNTERS_WIN, end);
+		assertEquals(EndState.HUNTERS_WIN, lab.waitForEnd());
 	}
 
 	@Tst
@@ -105,19 +104,16 @@ public class LabyrinthTest extends Assert {
 		TreasureHunter th1 = new TreasureHunter(lab.getCell(0,0), 2, 100);
 		TreasureHunter th2 = new TreasureHunter(lab.getCell(0,1), 5, 100);
 		lab.start();
-		EndState end = lab.waitForEnd();
-		assertEquals(EndState.HUNTERS_WIN, end);
+		assertEquals(EndState.HUNTERS_WIN, lab.waitForEnd());
 
-		int treasureSum = th1.getGold() + th2.getGold();
-		assertEquals(65, treasureSum);
+		assertEquals(65, th1.getGold() + th2.getGold());
 	}
 
 	@Tst
 	public void huntersReachesMaxSteps() {
 		new TreasureHunter(exitlessLab.getCell(0,0), 2, 20);
 		exitlessLab.start();
-		EndState end = exitlessLab.waitForEnd();
-		assertEquals(EndState.STEP_COUNT_REACHED, end);
+		assertEquals(EndState.STEP_COUNT_REACHED, exitlessLab.waitForEnd());
 	}
 
 	@Tst
@@ -126,8 +122,7 @@ public class LabyrinthTest extends Assert {
 		TreasureHunter th2 = new TreasureHunter(exitlessLab.getCell(1,2), 3, 50);
 		new Ghost(exitlessLab.getCell(0,2), 1, 50);
 		exitlessLab.start();
-		EndState end = exitlessLab.waitForEnd();
-		assertEquals(EndState.GHOSTS_WIN, end);
+		assertEquals(EndState.GHOSTS_WIN, exitlessLab.waitForEnd());
 
 		assertTrue(th1.isDead());
 		assertTrue(th2.isDead());
