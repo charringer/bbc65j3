@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Labyrinth {
 
 	private int height;
 	private int width;
 	private Cell[][] cell;
+	private List<Player> players = new ArrayList<Player>();
 
 	/* format of map: see test cases; minimum dim: 1x1
 	 */
@@ -39,5 +43,25 @@ public class Labyrinth {
 		if (x < 0 || y < 0 || x >= width || y >= height)
 			throw new IllegalArgumentException("invalid coordinates");
 		return cell[y][x];
+	}
+	
+	public void addPlayer(Player player) {
+		players.add(player);
+	}
+	
+	public void start() {
+		for (Player player : players) {
+			player.start();
+		}
+	}
+	
+	public void stop() {
+		for (Player player : players) {
+			player.kill();
+		}
+	}
+	
+	public void huntersWin() {
+		stop();
 	}
 }

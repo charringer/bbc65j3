@@ -1,5 +1,5 @@
 public abstract class Player extends Thread {
-	private Cell currentCell;
+	protected Cell currentCell;
 	private long sleepTime;
 	private boolean dead;
 

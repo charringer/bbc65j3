@@ -99,4 +99,9 @@ public class Cell {
 		
 		return cells;
 	}
+
+	public boolean isExit() {
+		return (x+1 == labyrinth.getWidth() && !eastWall)
+			|| (y+1 == labyrinth.getHeight() && !northWall);
+	}
 }
