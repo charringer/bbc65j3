@@ -18,7 +18,7 @@ public class Labyrinth {
 				boolean north = (map[2*height - 2*(y+1)].charAt(2*x) == '-');
 				boolean east = (map[2*height - 2*(y+1) + 1].charAt(2*x + 1) == '|');
 				int gold = treasure[height - (y+1)][x];
-				Cell curCell = new Cell(north, east, gold, x, y);
+				Cell curCell = new Cell(this, north, east, gold, x, y);
 				cellLine[x] = curCell;
 			}
 		}
