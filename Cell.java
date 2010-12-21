@@ -81,6 +81,8 @@ public class Cell {
 		}
 	}
 	
+	/* just remove the player from the cell
+	 */
 	public synchronized void removePlayer(Player player) {
 		players.remove(player);
 	}

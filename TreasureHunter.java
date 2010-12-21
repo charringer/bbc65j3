@@ -32,10 +32,14 @@ public class TreasureHunter extends Player {
 		gold += currentCell.seizeGold();
 	}
 
+	/* return the amount of gold collected so far
+	 */
 	public int getGold() {
 		return gold;
 	}
 
+	/* return the live status of the hunter
+	 */
 	public boolean isDead() {
 		return !alive;
 	}
