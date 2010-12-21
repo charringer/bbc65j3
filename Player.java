@@ -27,6 +27,9 @@ public abstract class Player extends Thread {
 					return;
 			}	
 			step();
+			stepCountdown--;
+			if(stepCountdown == 0)
+				currentCell.getLabyrinth().playerReachesStepCount();
 		}
 	}
 

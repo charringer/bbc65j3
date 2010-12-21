@@ -75,6 +75,11 @@ public class Labyrinth {
 		endState = EndState.HUNTERS_WIN;
 		stop();
 	}
+
+	public void playerReachesStepCount() {
+		endState = EndState.STEP_COUNT_REACHED;
+		stop();
+	}
 	
 	public EndState waitForEnd() {
 		while (endState == null) {
